@@ -1,0 +1,33 @@
+.wrapper{
+  border: 1px red solid;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2.5rem;
+  background-color: #1B1B32;
+}
+.logo{
+  border: 1px red solid;
+  width: 100%;
+  max-width: 4rem;
+}
+.icon{
+  width: 100%;
+  font-size: 4rem;
+  color: #fff;
+}
+.options{
+  border: 1px red solid;
+  width: 100%;
+  max-width: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+.option{
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  color: #fff;
+}

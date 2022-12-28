@@ -1,8 +1,11 @@
+import classes from './app.module.css';
+
+import Navbar from './components/navbar/navbar';
 
 function App() {
   return (
-    <div className="App">
-      <h1>welcome</h1>
+    <div className={classes.wrapper}>
+      <Navbar />
     </div>
   );
 }
