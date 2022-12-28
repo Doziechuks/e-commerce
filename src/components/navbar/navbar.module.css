@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 2.5rem;
+  padding: 0.5rem 4.5rem;
   background-color: #1B1B32;
 }
 .logo{
@@ -30,4 +30,61 @@
   font-size: 1.3rem;
   text-transform: uppercase;
   color: #fff;
+}
+.mobileBox{
+display: none;
+}
+
+
+@media screen and (max-width: 900px) {
+  .wrapper{
+  padding: 0.5rem 2rem;
+}
+}
+
+@media screen and (max-width: 650px) {
+  .icon{
+  font-size: 3rem;
+}
+  .options{
+    flex-direction: column;
+    position: absolute;
+    height: 100vh;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #1B1B32;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    padding-top: 6rem;
+    transform: translateY(-100%);
+    transition: all 1s ease-in-out;
+  }
+  .show{
+     transform: translateY(0);
+  }
+  .option{
+    color: #fff;
+    margin-bottom: 4.5rem;
+  }
+  .mobileBox{
+display: block;
+}
+.mobileIcon{
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  
+}
+.mobileIcontimes{
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
 }
