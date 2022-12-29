@@ -12,7 +12,7 @@ const ShopContainer = ({collection}) => {
         })}
       </div>
 
-      <p>see more</p>
+     <div className={classes.link}>Go to page</div>
     </div>
   );
 }
