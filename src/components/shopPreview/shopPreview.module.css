@@ -3,3 +3,8 @@
   width: 100%;
   padding: 2.5rem 4.5rem;
 }
+@media screen and (max-width: 950px) {
+  .wrapper{
+    padding: 2rem 2rem;
+  }
+}
