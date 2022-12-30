@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const config = {
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -12,6 +13,16 @@ const config = {
 
 const app = initializeApp(config);
 export const db = getFirestore(app);
+export const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+export const googleSignin = async () => {
+try {
+  await signInWithPopup(auth, provider)
+} catch (error) {
+  console.log(error.message);
+}
+};
 
 export const convertCollectionSnapshotToMap = (collections) => {
   const transformedCollections = collections.docs.map(doc => {

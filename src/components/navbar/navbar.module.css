@@ -49,8 +49,14 @@
 }
 
 @media screen and (max-width: 650px) {
+   .wrapper {
+    padding: 0.5rem 1.5rem;
+  }
+  .logo {
+  max-width: 3rem;
+}
   .icon {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .options {
     flex-direction: column;
@@ -82,14 +88,14 @@
   .mobileCart{
     display: block;
     width: 100%;
-    max-width: 4rem;
+    max-width: 3rem;
   }
   .mobileBox {
     display: block;
   }
   .mobileIcon {
     color: #fff;
-    font-size: 2rem;
+    font-size: 1.7rem;
     cursor: pointer;
   }
   .mobileIcontimes {

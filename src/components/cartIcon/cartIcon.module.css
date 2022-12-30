@@ -21,3 +21,14 @@
   top: 0;
   right: 5px;
 }
+
+@media screen and (max-width: 650px) {
+  .icon{
+    font-size: 2.5rem;
+  }
+  .wrapper p{
+    max-width: 1.4rem;
+     padding: 0.2rem;
+     font-size: 0.6rem;
+  }
+}

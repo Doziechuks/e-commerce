@@ -1,6 +1,6 @@
 import shopActionType from "./shopType";
 
-import { db, convertCollectionSnapshotToMap } from "../../firestore/firestoreUtils";
+import { db, convertCollectionSnapshotToMap } from "../../firebase/firebaseUtils";
 import { collection, onSnapshot } from "firebase/firestore";
 
 export const setCollectionStart = () => ({
