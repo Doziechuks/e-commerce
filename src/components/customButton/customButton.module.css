@@ -1,0 +1,27 @@
+.button{
+  width: 100%;
+  font-size: 1.3rem;
+  outline: none;
+  text-transform: capitalize;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #1b1b32;
+  color: #fff;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.button:hover{
+  background-color: #fff;
+  border: 1px #1b1b32 solid;
+  color: #1b1b32;
+}
+.google{
+  background-color: #237ff8;
+}
+.google:hover{
+  background-color: #0f6ce7;
+  color: #fff;
+  border: none;
+}

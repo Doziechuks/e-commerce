@@ -1,0 +1,21 @@
+.wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+.label{
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  color: #1b1b32;
+  margin-bottom: 0.5rem;
+}
+.input{
+  width: 100%;
+  font-size: 1.2rem;
+  outline: none;
+  border: none;
+  border-bottom: 2px #1b1b32 solid;
+}
