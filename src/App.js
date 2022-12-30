@@ -1,36 +1,45 @@
-import classes from './app.module.css';
+import classes from "./app.module.css";
 import { useEffect } from "react";
 
-import Navbar from './components/navbar/navbar';
-import Footer from './components/footer/footer';
-import Homepage from './pages/homePage/homePage';
-import SignInPage from './pages/signIn/signin';
+import Navbar from "./components/navbar/navbar";
+import Footer from "./components/footer/footer";
+import Homepage from "./pages/homePage/homePage";
+import SignInPage from "./pages/signIn/signin";
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from "react-router-dom";
 
-import { auth } from './firebase/firebaseUtils';
-import { onAuthStateChanged } from 'firebase/auth';
+import { auth, manageUserAuthProfile } from "./firebase/firebaseUtils";
+import { onAuthStateChanged } from "firebase/auth";
+import { onSnapshot } from "firebase/firestore";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { handleUserAction } from "./redux/user/userAction";
-import { createStructuredSelector } from 'reselect';
-import { selectCurrentUser } from './redux/user/userSelector';
-
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "./redux/user/userSelector";
 
 function App({ currentUser, setCurrentUser }) {
   useEffect(() => {
-    onAuthStateChanged(auth, user => {
-      if(user){
-        console.log(user);
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const userDocRef = await manageUserAuthProfile(user);
+        onSnapshot(userDocRef, (snapShot) => {
+          setCurrentUser({ id: snapShot.id, ...snapShot.data() });
+        });
       }
+      setCurrentUser(user);
     });
   }, []);
+
   return (
     <div className={classes.wrapper}>
       <Navbar />
       <Switch>
         <Route exact path="/" component={Homepage} />
-        <Route exact path="/signin" component={SignInPage} />
+        <Route
+          exact
+          path="/signin"
+          render={() => (currentUser ? <Redirect to="/" /> : <SignInPage />)}
+        />
       </Switch>
       <Footer />
     </div>
@@ -38,9 +47,9 @@ function App({ currentUser, setCurrentUser }) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 });
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(handleUserAction(user))
+  setCurrentUser: (user) => dispatch(handleUserAction(user)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);

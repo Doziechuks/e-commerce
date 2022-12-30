@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 
 const config = {
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -22,6 +22,36 @@ try {
 } catch (error) {
   console.log(error.message);
 }
+};
+
+export const handleSignOut = async () => {
+  try {
+    await signOut(auth)
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export const manageUserAuthProfile = async (userAuth, otherProps) => {
+  if(!userAuth) return;
+
+  const addDocRef = doc(db, 'users', userAuth.uid);
+  const getDocRef = await getDoc(addDocRef);
+
+  if(!getDocRef.exists()){
+    const { displayName, email } = userAuth;
+    const createdDate = new Date();
+
+    try {
+      await setDoc(addDocRef, {displayName, email, createdDate, ...otherProps})
+    } catch (error) {
+      console.log(error.message);
+    }
+  }else{
+    console.log('user already exist');
+  }
+
+  return addDocRef;
 };
 
 export const convertCollectionSnapshotToMap = (collections) => {

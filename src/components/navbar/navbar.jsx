@@ -6,7 +6,14 @@ import { useState } from 'react';
 
 import CartIcon from '../cartIcon/cartIcon';
 
-const Navbar = () => {
+import { handleSignOut } from '../../firebase/firebaseUtils';
+
+import { connect } from 'react-redux';
+import { selectCurrentUser } from '../../redux/user/userSelector';
+import { createStructuredSelector } from 'reselect';
+
+const Navbar = ({currentUser}) => {
+  console.log(currentUser);
   const [showNav, setShowNav] = useState(false);
   return (
     <div className={classes.wrapper}>
@@ -26,9 +33,13 @@ const Navbar = () => {
         <Link to="/shop" className={classes.option}>
           shop
         </Link>
-        <Link to="/signin" className={classes.option}>
-          sign in
-        </Link>
+        {currentUser ? (
+          <div className={classes.option} onClick={handleSignOut}>sign out</div>
+        ) : (
+          <Link to="/signin" className={classes.option}>
+            sign in
+          </Link>
+        )}
         <div className={classes.cart}>
           <CartIcon />
         </div>
@@ -43,4 +54,8 @@ const Navbar = () => {
   );
 }
  
-export default Navbar;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+});
+
+export default connect(mapStateToProps)(Navbar);
