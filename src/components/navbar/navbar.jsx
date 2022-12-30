@@ -4,6 +4,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
+import CartIcon from '../cartIcon/cartIcon';
+
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
   return (
@@ -27,6 +29,12 @@ const Navbar = () => {
         <Link to="/signin" className={classes.option}>
           sign in
         </Link>
+        <div className={classes.cart}>
+          <CartIcon />
+        </div>
+      </div>
+      <div className={classes.mobileCart}>
+        <CartIcon />
       </div>
       <div className={classes.mobileBox} onClick={() => setShowNav(!showNav)}>
         <FaBars className={classes.mobileIcon} />

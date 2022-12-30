@@ -1,23 +1,23 @@
-.wrapper{
+.wrapper {
   border: 1px red solid;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 4.5rem;
-  background-color: #1B1B32;
+  background-color: #1b1b32;
 }
-.logo{
+.logo {
   border: 1px red solid;
   width: 100%;
   max-width: 4rem;
 }
-.icon{
+.icon {
   width: 100%;
   font-size: 4rem;
   color: #fff;
 }
-.options{
+.options {
   border: 1px red solid;
   width: 100%;
   max-width: 40rem;
@@ -26,27 +26,33 @@
   justify-content: flex-end;
   gap: 1.5rem;
 }
-.option{
+.option {
   font-size: 1.3rem;
   text-transform: uppercase;
   color: #fff;
 }
-.mobileBox{
-display: none;
+.cart {
+  width: 100%;
+  max-width: 4rem;
 }
-
+ .mobileCart{
+    display: none;
+  }
+.mobileBox {
+  display: none;
+}
 
 @media screen and (max-width: 900px) {
-  .wrapper{
-  padding: 0.5rem 2rem;
-}
+  .wrapper {
+    padding: 0.5rem 2rem;
+  }
 }
 
 @media screen and (max-width: 650px) {
-  .icon{
-  font-size: 3rem;
-}
-  .options{
+  .icon {
+    font-size: 3rem;
+  }
+  .options {
     flex-direction: column;
     position: absolute;
     height: 100vh;
@@ -55,7 +61,7 @@ display: none;
     left: 0;
     right: 0;
     z-index: 10;
-    background-color: #1B1B32;
+    background-color: #1b1b32;
     align-items: center;
     justify-content: flex-start;
     gap: 0;
@@ -63,28 +69,35 @@ display: none;
     transform: translateY(-100%);
     transition: all 1s ease-in-out;
   }
-  .show{
-     transform: translateY(0);
+  .show {
+    transform: translateY(0);
   }
-  .option{
+  .option {
     color: #fff;
     margin-bottom: 4.5rem;
   }
-  .mobileBox{
-display: block;
-}
-.mobileIcon{
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-  
-}
-.mobileIcontimes{
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-  position: absolute;
-  top: 1em;
-  right: 1em;
-}
+  .cart {
+    display: none;
+  }
+  .mobileCart{
+    display: block;
+    width: 100%;
+    max-width: 4rem;
+  }
+  .mobileBox {
+    display: block;
+  }
+  .mobileIcon {
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  .mobileIcontimes {
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+  }
 }
