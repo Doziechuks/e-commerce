@@ -6,6 +6,7 @@ import Footer from "./components/footer/footer";
 import Homepage from "./pages/homePage/homePage";
 import SignInPage from "./pages/signIn/signin";
 import SignupPage from "./pages/signup/signup";
+import CollectionsPage from "./pages/shopCollectionsPage/shopCollections";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -46,6 +47,7 @@ function App({ currentUser, setCurrentUser }) {
           path="/signup"
           render={() => (currentUser ? <Redirect to="/" /> : <SignupPage />)}
         />
+        <Route exact path="/shop/:collectionId" component={CollectionsPage} />
       </Switch>
       <Footer />
     </div>

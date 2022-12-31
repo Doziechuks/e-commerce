@@ -1,0 +1,36 @@
+.wrapper{
+  border: 1px red solid;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 4.5rem;
+}
+.title{
+  color: #1b1b32;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.shopItems{
+  border: 1px red solid;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+@media screen and (max-width: 950px) {
+  .wrapper{
+    padding: 2rem;
+  }
+  .shopItems{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 650px) {
+ .shopItems{
+    grid-template-columns: 1fr;
+  }
+}

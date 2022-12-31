@@ -25,3 +25,10 @@
   color: #fff;
   border: none;
 }
+.cart{
+  width: 6rem;
+  padding: 0.3rem;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  text-transform: none;
+}

@@ -13,7 +13,6 @@ import { selectCurrentUser } from '../../redux/user/userSelector';
 import { createStructuredSelector } from 'reselect';
 
 const Navbar = ({currentUser}) => {
-  console.log(currentUser);
   const [showNav, setShowNav] = useState(false);
   return (
     <div className={classes.wrapper}>
