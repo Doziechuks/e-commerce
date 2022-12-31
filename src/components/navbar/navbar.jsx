@@ -24,19 +24,33 @@ const Navbar = ({currentUser}) => {
         <div className={classes.mobileBox} onClick={() => setShowNav(!showNav)}>
           <FaTimes className={classes.mobileIcontimes} />
         </div>
-        <Link to="/" className={classes.option}>
+        <Link
+          to="/"
+          className={classes.option}
+          onClick={() => setShowNav(!showNav)}
+        >
           home
         </Link>
-        <Link to="/contactus" className={classes.option}>
+        <Link
+          to="/contactus"
+          className={classes.option}
+          onClick={() => setShowNav(!showNav)}
+        >
           contact us
         </Link>
         <Link to="/shop" className={classes.option}>
           shop
         </Link>
         {currentUser ? (
-          <div className={classes.option} onClick={handleSignOut}>sign out</div>
+          <div className={classes.option} onClick={() => {setShowNav(!showNav); handleSignOut()} }>
+            sign out
+          </div>
         ) : (
-          <Link to="/signin" className={classes.option}>
+          <Link
+            to="/signin"
+            className={classes.option}
+            onClick={() => setShowNav(!showNav)}
+          >
             sign in
           </Link>
         )}

@@ -1,31 +1,65 @@
 import classes from "./signin.module.css";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 import FormInput from "../../components/formInput/formInput";
 import CustomButton from "../../components/customButton/customButton";
-import { googleSignin } from "../../firebase/firebaseUtils";
+import { googleSignin, auth } from "../../firebase/firebaseUtils";
 
-const SignInPage = () => {
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { handleIsLoadingAction, handleErrorMessageAction } from '../../redux/user/userAction';
+import { selectIsLoading, selectErrorMessage } from '../../redux/user/userSelector';
+
+const SignInPage = ({ isLoading, setIsLoading, fetchError, setFetchError }) => {
+  console.log({isLoading, fetchError});
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setEmail('');
-    setPassword('');
+    try {
+      setIsLoading();
+      await signInWithEmailAndPassword(auth, email, password);
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      console.log({error: error.message});
+      switch (error.message) {
+        case "Firebase: Error (auth/network-request-failed).":
+          return setFetchError("No internet connection");
+        case "Firebase: Error (auth/user-not-found).":
+          return setFetchError("Email does not exist");
+        default:
+          return setFetchError("Something went wrong");
+      }
+    }
+    
   };
+   useEffect(() => {
+     let timerId = setInterval(() => {
+       setFetchError("");
+     }, 5000);
+     return () => clearTimeout(timerId);
+   }, []);
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+
+   if (isLoading) {
+     return <h1>Loading...</h1>;
+   }
   return (
     <div className={classes.wrapper}>
       <h1 className={classes.title}>sign in to your account</h1>
       <form className={classes.form} onSubmit={handleSubmit}>
+        <p className={classes.error}>{fetchError}</p>
         <FormInput
           type="email"
           label="email"
@@ -41,7 +75,9 @@ const SignInPage = () => {
           required
         />
         <CustomButton type="submit">sign in</CustomButton>
-        <CustomButton onClick={googleSignin} isGoogle>sign in with google</CustomButton>
+        <CustomButton onClick={googleSignin} isGoogle>
+          sign in with google
+        </CustomButton>
       </form>
       <p className={classes.signup}>
         Don't have an account ?
@@ -51,4 +87,12 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+const mapStateToProps = createStructuredSelector({
+  isLoading: selectIsLoading,
+  fetchError: selectErrorMessage,
+});
+const mapDispatchToProps = (dispatch) => ({
+  setIsLoading: () => dispatch(handleIsLoadingAction()),
+  setFetchError: (error) => dispatch(handleErrorMessageAction(error)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);

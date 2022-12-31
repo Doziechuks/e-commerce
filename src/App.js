@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
 import Homepage from "./pages/homePage/homePage";
 import SignInPage from "./pages/signIn/signin";
+import SignupPage from "./pages/signup/signup";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -39,6 +40,11 @@ function App({ currentUser, setCurrentUser }) {
           exact
           path="/signin"
           render={() => (currentUser ? <Redirect to="/" /> : <SignInPage />)}
+        />
+        <Route
+          exact
+          path="/signup"
+          render={() => (currentUser ? <Redirect to="/" /> : <SignupPage />)}
         />
       </Switch>
       <Footer />
