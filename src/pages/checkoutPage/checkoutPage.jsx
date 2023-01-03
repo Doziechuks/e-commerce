@@ -1,17 +1,18 @@
 import classes from "./checkoutPage.module.css";
 import { useEffect } from "react";
 import CartItems from "../../components/cartItems/cartItems";
+import HandlePayment from "../../paystack/paystack";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/userSelector";
-import { selectCartItems } from "../../redux/cart/cartSelector";
+import { selectCartItems, selectCartTotal } from "../../redux/cart/cartSelector";
 import { handleAddCartItem } from "../../redux/cart/cartAction";
 
 import { doc, query, collection, onSnapshot, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebaseUtils";
 
-const CheckoutPage = ({ currentUser, cartItems, setCartItems }) => {
+const CheckoutPage = ({ currentUser, cartItems, setCartItems, totalPrice }) => {
   console.log({cartItems});
 
   useEffect(() => {
@@ -64,28 +65,39 @@ const CheckoutPage = ({ currentUser, cartItems, setCartItems }) => {
   return (
     <div className={classes.wrapper}>
       <h1 className={classes.title}>cart items</h1>
-      <h3 className={classes.total}>total price: $0</h3>
-      <div className={classes.cartItemsContainer}>
-        {cartItems.map((item) => {
-          return (
-            <CartItems
-              key={item.id}
-              item={item}
-              increaseCartQuantity={increaseCartQuantity}
-              decreaseCartQuantity={decreaseCartQuantity}
-              deleteCartItem={deleteCartItem}
-            />
-          );
-        })}
-      </div>
-      <button className={classes.button}>pay here</button>
+      {cartItems ? (
+        <div className={classes.itemsWrapper}>
+          <h3 className={classes.total}>
+            total price: ${currentUser ? totalPrice : 0}
+          </h3>
+          <div className={classes.cartItemsContainer}>
+            {cartItems.map((item) => {
+              return (
+                <CartItems
+                  key={item.id}
+                  item={item}
+                  increaseCartQuantity={increaseCartQuantity}
+                  decreaseCartQuantity={decreaseCartQuantity}
+                  deleteCartItem={deleteCartItem}
+                />
+              );
+            })}
+          </div>
+          <div className={classes.button}>
+            <HandlePayment price={totalPrice} />
+          </div>
+        </div>
+      ) : (
+        <h1>your cart is empty</h1>
+      )}
     </div>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  cartItems: selectCartItems
+  cartItems: selectCartItems,
+  totalPrice: selectCartTotal
 });
 const mapDispatchToProps = dispatch => ({
   setCartItems: (cartItems) => dispatch(handleAddCartItem(cartItems))

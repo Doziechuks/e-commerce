@@ -12,6 +12,10 @@
   color: #1b1b32;
   margin-bottom: 1rem;
 }
+.itemsWrapper{
+  border: 1px red solid;
+  width: 100%;
+}
 .total {
   border: 1px red solid;
   width: 100%;
@@ -33,7 +37,7 @@
   gap: 2.5rem;
   margin-bottom: 2rem;
 }
-.button{
+.button button{
   font-size: 1.3rem;
   padding: 0.8rem;
   background-color: #1b1b32;
@@ -45,7 +49,7 @@
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 }
-.button:hover{
+.button button:hover{
   background-color: #131335;
 }
 @media screen and (max-width: 950px) {
