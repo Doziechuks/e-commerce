@@ -7,6 +7,11 @@ export const selectCartItems = createSelector(
   cart => cart.cartItems
 );
 
+export const selectIsFetching = createSelector(
+  [selectCart],
+  cart => cart.isFetching
+);
+
 export const selectCartItemsCount = createSelector(
   [selectCartItems],
   (cartItems) =>

@@ -1,0 +1,93 @@
+.wrapper {
+  width: 100%;
+  max-width: 18rem;
+  height: 18rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.3em 0.5em rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease-in-out;
+}
+.background{
+  border: 1px red solid;
+  width: 100%;
+  height: 12rem;
+  border-radius: 0.5rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 1rem;
+}
+.info{
+  border: 1px red solid;
+  width: 100%;
+  height: 6rem;
+}
+.name{
+  border: 1px red solid;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+.quatityBox{
+  border: 1px red solid;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.quantity{
+  border: 1px red solid;
+  width: 100%;
+  max-width: 10rem;
+  display: flex;
+  align-items: center;
+}
+.quantityTitle{
+  font-weight: bold;
+  margin-right: 0.3rem;
+}
+.quantityIcon{
+  background-color: lightgray;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.icon{
+  font-size: 1.2rem;
+}
+.quantityNumber{
+  margin: 0 0.5rem;
+}
+.quatityBox button{
+  background-color: lightgray;
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trash{
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 650px) {
+  .wrapper {
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  .name h3{
+  font-size: 1rem;
+}
+}

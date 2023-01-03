@@ -4,10 +4,8 @@ export const handleAddCartItem = (cartItem) => ({
   type: cartActionType.ADD_ITEM,
   payload: cartItem,
 });
-
-export const handleRemoveCartItem = (cartItem) => ({
-  type: cartActionType.REMOVE_ITEM,
-  payload: cartItem
+export const handleIsFetching = () => ({
+  type: cartActionType.IS_FETCHING
 });
 
 export const handleClearItemFromCart = (cartItem) => ({
