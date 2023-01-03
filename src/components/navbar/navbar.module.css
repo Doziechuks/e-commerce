@@ -1,5 +1,4 @@
 .wrapper {
-  border: 1px red solid;
   width: 100%;
   display: flex;
   align-items: center;
@@ -8,7 +7,6 @@
   background-color: #1b1b32;
 }
 .logo {
-  border: 1px red solid;
   width: 100%;
   max-width: 4rem;
 }
@@ -18,7 +16,6 @@
   color: #fff;
 }
 .options {
-  border: 1px red solid;
   width: 100%;
   max-width: 40rem;
   display: flex;

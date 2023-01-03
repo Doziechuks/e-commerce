@@ -64,9 +64,9 @@ const CheckoutPage = ({ currentUser, cartItems, setCartItems, totalPrice }) => {
 
   return (
     <div className={classes.wrapper}>
-      <h1 className={classes.title}>cart items</h1>
-      {cartItems ? (
+      {cartItems.length ? (
         <div className={classes.itemsWrapper}>
+          <h1 className={classes.title}>cart items</h1>
           <h3 className={classes.total}>
             total price: ${currentUser ? totalPrice : 0}
           </h3>
@@ -88,7 +88,7 @@ const CheckoutPage = ({ currentUser, cartItems, setCartItems, totalPrice }) => {
           </div>
         </div>
       ) : (
-        <h1>your cart is empty</h1>
+        <h1 className={classes.emptyCart}>your cart is empty!</h1>
       )}
     </div>
   );
