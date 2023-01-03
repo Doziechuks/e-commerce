@@ -27,6 +27,7 @@ export const fetchCollectionsStartAsync = () => {
       });
     } catch (error) {
       dispatch(setCollectionError(error.message))
+      console.log(error.message);
     }
   }
 }

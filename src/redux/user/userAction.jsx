@@ -8,7 +8,6 @@ export const handleUserAction = (user) => ({
 export const handleIsLoadingAction = () => ({
   type: userActionType.IS_LOADING
 });
-
 export const handleErrorMessageAction = (errorMessage) => ({
   type: userActionType.ERROR_MESSAGE,
   payload: errorMessage

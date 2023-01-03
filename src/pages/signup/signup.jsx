@@ -13,7 +13,7 @@ import { handleIsLoadingAction, handleErrorMessageAction } from '../../redux/use
 import { selectIsLoading, selectErrorMessage } from '../../redux/user/userSelector';
 
 
-const SignupPage = ({ isLoading, setIsLoading, fetchError, setFetchError }) => {
+const SignupPage = ({ fetchError, setFetchError }) => {
   const history = useHistory();
   const [displayName, setDisplayName] = useState('')
    const [email, setEmail] = useState("");
@@ -31,7 +31,6 @@ const SignupPage = ({ isLoading, setIsLoading, fetchError, setFetchError }) => {
         return;
       }
       try {
-        setIsLoading();
         const { user } = await createUserWithEmailAndPassword(auth, email, password);
         await manageUserAuthProfile(user, { displayName });
         setDisplayName("");
@@ -71,10 +70,6 @@ const SignupPage = ({ isLoading, setIsLoading, fetchError, setFetchError }) => {
     const handleConfirmPasswordChange = (e) => {
       setConfirmPassword(e.target.value);
     };
-
-    if (isLoading) {
-      return <h1>Loading...</h1>;
-    }
    
   return (
     <div className={classes.wrapper}>

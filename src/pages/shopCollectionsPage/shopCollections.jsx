@@ -27,7 +27,7 @@ const CollectionsPage = ({collections, isLoading, fetchCollectionsStartAsync}) =
     <div className={classes.shopItems}>
       {
         items.map(item => {
-          console.log(item);
+          // console.log(item);
           return <ShopItems key={item.id} item={item} isCollectionPage />
         })
       }

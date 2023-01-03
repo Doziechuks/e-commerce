@@ -1,14 +1,14 @@
 import classes from './shopPreview.module.css';
+import { useEffect } from "react";
 import ShopContainer from '../shopcontainer/shopContainer';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCollectionsForPreview, selectCollectionFetching } from '../../redux/shop/shopSelector';
+import { selectCollectionsForPreview, selectCollectionFetching, selectErrorMessage } from '../../redux/shop/shopSelector';
 import { fetchCollectionsStartAsync } from '../../redux/shop/shopAction';
-import { useEffect } from 'react';
 
-const ShopPreview = ({ isFetching, collections, fetchCollectionsStartAsync }) => {
 
+const ShopPreview = ({ isFetching, errorMessage, collections, fetchCollectionsStartAsync }) => {
   useEffect(()=>{
     fetchCollectionsStartAsync();
   },[])
@@ -16,6 +16,9 @@ const ShopPreview = ({ isFetching, collections, fetchCollectionsStartAsync }) =>
   if(isFetching){
     return <h1>loading...</h1>;
     
+  }
+  if(errorMessage){
+    return <h1>something went wrong</h1>
   }
   return ( 
     <div className={classes.wrapper}>
@@ -30,6 +33,7 @@ const ShopPreview = ({ isFetching, collections, fetchCollectionsStartAsync }) =>
  
 const mapStateToProps = createStructuredSelector({
   isFetching: selectCollectionFetching,
+  errorMessage: selectErrorMessage,
   collections: selectCollectionsForPreview
 });
 const mapDispatchToProps = (dispatch) => ({

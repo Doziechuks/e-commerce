@@ -1,12 +1,13 @@
 import classes from './navbar.module.css';
 import { AiFillFire } from 'react-icons/ai';
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 
 import CartIcon from '../cartIcon/cartIcon';
 
-import { handleSignOut } from '../../firebase/firebaseUtils';
+import { auth } from '../../firebase/firebaseUtils';
+import { signOut } from 'firebase/auth';
 
 import { connect } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/userSelector';
@@ -14,6 +15,7 @@ import { createStructuredSelector } from 'reselect';
 
 const Navbar = ({currentUser}) => {
   const [showNav, setShowNav] = useState(false);
+  const history = useHistory();
   return (
     <div className={classes.wrapper}>
       <Link to="/" className={classes.logo}>
@@ -41,7 +43,13 @@ const Navbar = ({currentUser}) => {
           shop
         </Link>
         {currentUser ? (
-          <div className={classes.option} onClick={() => {setShowNav(!showNav); handleSignOut()} }>
+          <div
+            className={classes.option}
+            onClick={() => {
+              setShowNav(!showNav);
+              signOut(auth);
+            }}
+          >
             sign out
           </div>
         ) : (
@@ -53,11 +61,17 @@ const Navbar = ({currentUser}) => {
             sign in
           </Link>
         )}
-        <div className={classes.cart}>
+        <div
+          className={classes.cart}
+          onClick={() => history.push("/cartItems")}
+        >
           <CartIcon />
         </div>
       </div>
-      <div className={classes.mobileCart}>
+      <div
+        className={classes.mobileCart}
+        onClick={() => history.push("/cartItems")}
+      >
         <CartIcon />
       </div>
       <div className={classes.mobileBox} onClick={() => setShowNav(!showNav)}>

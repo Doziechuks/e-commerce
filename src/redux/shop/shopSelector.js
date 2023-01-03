@@ -21,6 +21,10 @@ export const selectCollectionFetching = createSelector(
   [selectShop],
   shop => shop.isFetching
 );
+export const selectErrorMessage = createSelector(
+  [selectShop],
+  (error) => error.errorMessage
+);
 
 export const selectIsCollectionsLoaded = createSelector(
   [selectShop],

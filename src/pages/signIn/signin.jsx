@@ -12,8 +12,7 @@ import { createStructuredSelector } from 'reselect';
 import { handleIsLoadingAction, handleErrorMessageAction } from '../../redux/user/userAction';
 import { selectIsLoading, selectErrorMessage } from '../../redux/user/userSelector';
 
-const SignInPage = ({ isLoading, setIsLoading, fetchError, setFetchError }) => {
-  console.log({isLoading, fetchError});
+const SignInPage = ({ fetchError, setFetchError }) => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +20,6 @@ const SignInPage = ({ isLoading, setIsLoading, fetchError, setFetchError }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setIsLoading();
       await signInWithEmailAndPassword(auth, email, password);
       setEmail("");
       setPassword("");
@@ -52,9 +50,6 @@ const SignInPage = ({ isLoading, setIsLoading, fetchError, setFetchError }) => {
     setPassword(e.target.value);
   };
 
-   if (isLoading) {
-     return <h1>Loading...</h1>;
-   }
   return (
     <div className={classes.wrapper}>
       <h1 className={classes.title}>sign in to your account</h1>
