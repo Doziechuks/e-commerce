@@ -32,3 +32,10 @@
   font-size: 1rem;
   text-transform: none;
 }
+.emptyCart{
+  display: block;
+  max-width: 10em;
+  margin: 0 auto;
+  letter-spacing: 0.1rem;
+  padding: 0.6rem;
+}

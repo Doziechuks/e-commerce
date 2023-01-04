@@ -53,11 +53,14 @@
 .button button:hover{
   background-color: #131335;
 }
+.emptyCartWrapper{
+  width: 100%;
+}
 .emptyCart{
-  border: 1px red solid;
   text-transform: capitalize;
   color: #1b1b32;
   text-align: center;
+  margin-bottom: 1rem;
 }
 @media screen and (max-width: 950px) {
   .wrapper {

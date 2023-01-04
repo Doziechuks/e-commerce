@@ -1,7 +1,9 @@
 import classes from "./checkoutPage.module.css";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import CartItems from "../../components/cartItems/cartItems";
 import HandlePayment from "../../paystack/paystack";
+import CustomButton from "../../components/customButton/customButton";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -13,7 +15,7 @@ import { doc, query, collection, onSnapshot, updateDoc, deleteDoc } from "fireba
 import { db } from "../../firebase/firebaseUtils";
 
 const CheckoutPage = ({ currentUser, cartItems, setCartItems, totalPrice }) => {
-  console.log({cartItems});
+ const history = useHistory()
 
   useEffect(() => {
     if (!currentUser.id) return;
@@ -88,7 +90,10 @@ const CheckoutPage = ({ currentUser, cartItems, setCartItems, totalPrice }) => {
           </div>
         </div>
       ) : (
-        <h1 className={classes.emptyCart}>your cart is empty!</h1>
+        <div className={classes.emptyCartWrapper}>
+          <h1 className={classes.emptyCart}>your cart is empty!</h1>
+          <CustomButton onClick={() => history.push('/shop')} isEmptyCart>start shopping</CustomButton>
+        </div>
       )}
     </div>
   );
