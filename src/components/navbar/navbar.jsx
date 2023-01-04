@@ -1,8 +1,8 @@
 import classes from './navbar.module.css';
 import { AiFillFire } from 'react-icons/ai';
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link, useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import CartIcon from '../cartIcon/cartIcon';
 
@@ -15,7 +15,14 @@ import { createStructuredSelector } from 'reselect';
 
 const Navbar = ({currentUser}) => {
   const [showNav, setShowNav] = useState(false);
+  const [path, setPathname] = useState('');
   const history = useHistory();
+  const {pathname} = useLocation();
+
+  useEffect(() => {
+    setPathname(pathname);
+  }, [pathname])
+
   return (
     <div className={classes.wrapper}>
       <Link to="/" className={classes.logo}>
@@ -25,42 +32,75 @@ const Navbar = ({currentUser}) => {
         <div className={classes.mobileBox} onClick={() => setShowNav(!showNav)}>
           <FaTimes className={classes.mobileIcontimes} />
         </div>
-        <Link
-          to="/"
-          className={classes.option}
-          onClick={() => setShowNav(!showNav)}
-        >
-          home
-        </Link>
-        <Link
-          to="/contactus"
-          className={classes.option}
-          onClick={() => setShowNav(!showNav)}
-        >
-          contact us
-        </Link>
-        <Link to="/shop" className={classes.option}>
-          shop
-        </Link>
-        {currentUser ? (
-          <div
-            className={classes.option}
-            onClick={() => {
-              setShowNav(!showNav);
-              signOut(auth);
-            }}
-          >
-            sign out
-          </div>
-        ) : (
+        <div className={classes.optionWrapper}>
           <Link
-            to="/signin"
+            to="/"
             className={classes.option}
             onClick={() => setShowNav(!showNav)}
           >
-            sign in
+            home
           </Link>
-        )}
+          <div
+            className={`${classes.underline} ${
+              path === "/" ? classes.active : ""
+            }`}
+          />
+        </div>
+        <div className={classes.optionWrapper}>
+          <Link
+            to="/contactus"
+            className={classes.option}
+            onClick={() => setShowNav(!showNav)}
+          >
+            contact us
+          </Link>
+          <div
+            className={`${classes.underline} ${
+              path.includes("/contactus") ? classes.active : ""
+            }`}
+          />
+        </div>
+        <div className={classes.optionWrapper}>
+          <Link
+            to="/shop"
+            className={classes.option}
+            onClick={() => setShowNav(!showNav)}
+          >
+            shop
+          </Link>
+          <div
+            className={`${classes.underline} ${
+              path.includes("/shop") ? classes.active : ""
+            }`}
+          />
+        </div>
+        <div className={classes.optionWrapper}>
+          {currentUser ? (
+            <div
+              className={classes.option}
+              onClick={() => {
+                setShowNav(!showNav);
+                signOut(auth);
+              }}
+            >
+              sign out
+            </div>
+          ) : (
+            <Link
+              to="/signin"
+              className={classes.option}
+              onClick={() => setShowNav(!showNav)}
+            >
+              sign in
+            </Link>
+          )}
+          <div
+            className={`${classes.underline} ${
+              path.includes("/sigin") ? classes.active : ""
+            }`}
+          />
+        </div>
+
         <div
           className={classes.cart}
           onClick={() => history.push("/cartItems")}
