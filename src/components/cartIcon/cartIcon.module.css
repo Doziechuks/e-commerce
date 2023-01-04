@@ -9,16 +9,18 @@
 }
 .wrapper p{
   width: 100%;
-  max-width: 1.7rem;
+  max-width: 1.5rem;
+  height: 1.5rem;
   background-color: #fff;
-  padding: 0.3rem;
   color: black;
   font-size: 0.8rem;
   border-radius: 50%;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 0;
-  right: 5px;
+  right: 10px;
 }
 
 @media screen and (max-width: 650px) {
@@ -27,7 +29,9 @@
   }
   .wrapper p{
     max-width: 1.4rem;
-     padding: 0.2rem;
-     font-size: 0.6rem;
+    height: 1.4rem;
+     font-size: 0.8rem;
+     right: 0;
+     top: -5px;
   }
 }

@@ -9,6 +9,7 @@ import SignInPage from "./pages/signIn/signin";
 import SignupPage from "./pages/signup/signup";
 import CollectionsPage from "./pages/shopCollectionsPage/shopCollections";
 import CheckoutPage from "./pages/checkoutPage/checkoutPage";
+import ContactPage from "./pages/contactPage/contactPage";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -57,8 +58,11 @@ function App({ currentUser, setCurrentUser, isLoading, setIsLoading }) {
         <Route
           exact
           path="/cartItems"
-          render={() => (!currentUser ? <Redirect to="/signin" /> : <CheckoutPage />)}
+          render={() =>
+            !currentUser ? <Redirect to="/signin" /> : <CheckoutPage />
+          }
         />
+        <Route exact path="/contactus" component={ContactPage} />
       </Switch>
       <Footer />
     </div>
