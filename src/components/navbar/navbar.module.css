@@ -99,6 +99,9 @@
     color: #fff;
     margin-bottom: 4.5rem;
   }
+  .underline{
+    display: none;
+  }
   .cart {
     display: none;
   }
