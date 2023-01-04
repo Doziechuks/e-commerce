@@ -10,6 +10,7 @@ import SignupPage from "./pages/signup/signup";
 import CollectionsPage from "./pages/shopCollectionsPage/shopCollections";
 import CheckoutPage from "./pages/checkoutPage/checkoutPage";
 import ContactPage from "./pages/contactPage/contactPage";
+import ShopPage from "./pages/shopPage/shopPage";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -63,6 +64,7 @@ function App({ currentUser, setCurrentUser, isLoading, setIsLoading }) {
           }
         />
         <Route exact path="/contactus" component={ContactPage} />
+        <Route exact path="/shop" component={ShopPage} />
       </Switch>
       <Footer />
     </div>
