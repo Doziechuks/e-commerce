@@ -3,6 +3,7 @@ import { useEffect } from "react";
 
 import Navbar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
+import WithSpinner from "./components/loadingSpinner/spinner";
 import Homepage from "./pages/homePage/homePage";
 import SignInPage from "./pages/signIn/signin";
 import SignupPage from "./pages/signup/signup";
@@ -34,7 +35,7 @@ function App({ currentUser, setCurrentUser, isLoading, setIsLoading }) {
     });
   }, []);
   if(isLoading){
-    return <h1>Loading...</h1>
+    return <WithSpinner />;
   }
 
   return (

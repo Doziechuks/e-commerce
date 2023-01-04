@@ -1,6 +1,7 @@
 import classes from './shopPreview.module.css';
 import { useEffect } from "react";
 import ShopContainer from '../shopcontainer/shopContainer';
+import WithSpinner from '../loadingSpinner/spinner';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -14,7 +15,7 @@ const ShopPreview = ({ isFetching, errorMessage, collections, fetchCollectionsSt
   },[])
 
   if(isFetching){
-    return <h1>loading...</h1>;
+    return <WithSpinner />;
     
   }
   if(errorMessage){
