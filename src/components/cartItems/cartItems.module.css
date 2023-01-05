@@ -18,7 +18,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .info{
   width: 100%;
@@ -30,6 +30,9 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.7rem;
+}
+.name h4{
+  color: #0740de;
 }
 .quatityBox{
   width: 100%;

@@ -24,7 +24,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .info{
   width: 100%;
@@ -36,7 +36,9 @@
   color: #1B1B32;
   letter-spacing: 0.1rem;
 }
-
+.price{
+  color: #0740de;
+}
 @media screen and (max-width:650px) {
   .wrapper{
     max-width: 15rem;
