@@ -25,7 +25,7 @@ import { selectCurrentUser, selectIsLoading } from "./redux/user/userSelector";
 
 function App({ currentUser, setCurrentUser, isLoading, setIsLoading }) {
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setIsLoading();
         const userDocRef = await manageUserAuthProfile(user);
@@ -35,6 +35,7 @@ function App({ currentUser, setCurrentUser, isLoading, setIsLoading }) {
       }
       setCurrentUser(user);
     });
+    return () => unsubscribe();
   }, []);
   if(isLoading){
     return <WithSpinner />;

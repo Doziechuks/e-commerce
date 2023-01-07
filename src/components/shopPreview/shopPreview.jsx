@@ -12,6 +12,7 @@ import { fetchCollectionsStartAsync } from '../../redux/shop/shopAction';
 const ShopPreview = ({ isFetching, errorMessage, collections, fetchCollectionsStartAsync }) => {
   useEffect(()=>{
     fetchCollectionsStartAsync();
+    
   },[])
 
   if(isFetching){
