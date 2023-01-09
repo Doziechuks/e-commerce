@@ -10,7 +10,7 @@ import {
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 
-const CollectionsPage = ({collections, isLoading, fetchCollectionsStartAsync}) => {
+const CollectionsPage = ({collections, fetchCollectionsStartAsync}) => {
 
   useEffect(()=>{
     fetchCollectionsStartAsync();
@@ -27,7 +27,6 @@ const CollectionsPage = ({collections, isLoading, fetchCollectionsStartAsync}) =
     <div className={classes.shopItems}>
       {
         items.map(item => {
-          // console.log(item);
           return <ShopItems key={item.id} item={item} isCollectionPage />
         })
       }
